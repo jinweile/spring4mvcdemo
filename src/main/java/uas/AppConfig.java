@@ -44,7 +44,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "uas")
 @ComponentScan(basePackages = "uas")
-@PropertySource("file:E:/temp/resources.properties")
+@PropertySource("classpath:resources.properties")
 public class AppConfig {
 
 	@Autowired
@@ -136,8 +136,7 @@ public class AppConfig {
 	public PlatformTransactionManager transactionManager() {
 		// File file = new File("");
 		// Thread.currentThread().getContextClassLoader().getResource("");
-		Resource resource = new ClassPathResource(
-				"file:E:/temp/resources.properties");
+		Resource resource = new ClassPathResource("file:E:/temp/resources.properties");
 
 		return new JpaTransactionManager();
 	}

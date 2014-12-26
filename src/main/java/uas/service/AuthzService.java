@@ -73,25 +73,26 @@ public class AuthzService {
 	@Transactional
 	public void testSave() throws CloneNotSupportedException {
 		AccessToken accessToken = new AccessToken();
-//		accessToken.setAppId("43tasret");
-//		accessToken.setCreatedTime(new Date());
-//		accessToken.setCode("5qw45");
-//		accessToken.setExpiredTime(new Date());
-//		accessToken.setIp("dsagasdg");
-//		accessToken.setToken("gdsagasdg");
-//		accessToken.setUname("gasgdsagdsag");
+		accessToken.setAppId("43tasret");
+		accessToken.setCreatedTime(new Date());
+		accessToken.setCode("5qw45");
+		accessToken.setExpiredTime(new Date());
+		accessToken.setIp("dsagasdg");
+		accessToken.setToken("gdsagasdg");
+		accessToken.setUname("gasgdsagdsag");
 //		accessToken.setId(53L);
-		//accessTokenRepo.save(accessToken);
+		accessTokenRepo.save(accessToken);
 		//accessTokenRepo.saveAndFlush(accessToken);
 		log.debug("=============================" + accessToken.getId());
 		//throw new RuntimeException("test");
 		
 		accessToken = accessTokenRepo.getOne(1L);
-		//克隆對象也不能解決不開啟事物而保持session的問題
-		AccessToken new_accessToken = (AccessToken)accessToken.clone();
-		new_accessToken.setUname("ddddd1");
-		
-		accessTokenRepo.save(new_accessToken);
+		accessToken.setUname("ddddd1");
+		//克隆对象也不能解決不开启事物而保持session的问题
+		//AccessToken new_accessToken = (AccessToken)accessToken.clone();
+		//new_accessToken.setUname("ddddd1");
+		//set在事物结束时会自动持久化到数据库
+		//accessTokenRepo.save(new_accessToken);
 	}
 
 }

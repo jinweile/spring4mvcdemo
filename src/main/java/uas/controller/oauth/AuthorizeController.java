@@ -145,11 +145,11 @@ public class AuthorizeController {
 	}
 
 	@RequestMapping("/test")
-	public String test(HttpServletRequest request ,HttpServletResponse response ,String name) throws IOException, CloneNotSupportedException {
+	public void test(HttpServletRequest request ,HttpServletResponse response) throws IOException, CloneNotSupportedException {
 		log.debug("访问测试:" + (authzService == null));
 		authzService.testSave();
 		//response.setContentType("");
-		return "true";
+		response.getWriter().write("true");
 	}
 	
 	@ResponseBody
