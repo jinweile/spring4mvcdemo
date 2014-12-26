@@ -1,7 +1,9 @@
 package uas.controller.oauth;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -143,9 +145,11 @@ public class AuthorizeController {
 	}
 
 	@RequestMapping("/test")
-	public void test(String name) {
+	public String test(HttpServletRequest request ,HttpServletResponse response ,String name) throws IOException, CloneNotSupportedException {
 		log.debug("访问测试:" + (authzService == null));
 		authzService.testSave();
+		//response.setContentType("");
+		return "true";
 	}
 	
 	@ResponseBody
