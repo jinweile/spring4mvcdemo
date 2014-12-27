@@ -1,7 +1,9 @@
 package uas.controller.oauth;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import uas.exception.UasException;
 import uas.model.AccessToken;
@@ -145,11 +148,18 @@ public class AuthorizeController {
 	}
 
 	@RequestMapping("/test")
-	public void test(HttpServletRequest request ,HttpServletResponse response) throws IOException, CloneNotSupportedException {
+	public ModelAndView test(HttpServletRequest request ,HttpServletResponse response) throws IOException, CloneNotSupportedException {
 		log.debug("访问测试:" + (authzService == null));
 		authzService.testSave();
 		//response.setContentType("");
-		response.getWriter().write("true");
+		//response.getWriter().write("true");
+		
+		Map map = new HashMap();
+		map.put("message", "true");
+		ModelAndView model = new ModelAndView();
+		model.setViewName("index");
+		model.addAllObjects(map);
+		return model;
 	}
 	
 	@ResponseBody
